@@ -24,7 +24,7 @@ Targetting Raspberry Pi, but also should work on Orange Pi or Odroid and other l
 - Presence detection - adjusting home state, notification about burglary.
 - Notifications - various methods: sound, light, email and phone. 
 
-SmartHub is modular. You can implement your own module implementation or add new features. So above list is only main planned features list.
+SmartHub is modular. You can add your own module implementation or add new features. So above list is only main planned features list.
 
 ## Modules
 
