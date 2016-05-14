@@ -1,4 +1,5 @@
 $Location = Get-Location
+$Configuration = "Release"
 
 # log the runtimes
 dnvm list
@@ -12,11 +13,11 @@ dnu feeds list
 dnu restore
 
 # run the build
-& "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" src\Luma.SmartHub.sln
+& "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" src\Luma.SmartHub.sln /property:Configuration=$Configuration
 
 Get-ChildItem -r *.nuspec | ForEach-Object {
     Write-Host Packaging $_.FullName
-    NuGet Pack $_.FullName
+    NuGet Pack $_.FullName -Prop Configuration=$Configuration
 }
 
 Set-Location $Location
