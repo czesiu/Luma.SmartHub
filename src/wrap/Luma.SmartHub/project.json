@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net451": {
+      "wrappedProject": "../../Luma.SmartHub/Luma.SmartHub.csproj",
+      "bin": {
+        "assembly": "../../Luma.SmartHub/obj/{configuration}/Luma.SmartHub.dll",
+        "pdb": "../../Luma.SmartHub/obj/{configuration}/Luma.SmartHub.pdb"
+      }
+    },
+    "net45": {
+      "wrappedProject": "../../Luma.SmartHub/Luma.SmartHub.csproj",
+      "bin": {
+        "assembly": "../../Luma.SmartHub/obj/{configuration}/Luma.SmartHub.dll",
+        "pdb": "../../Luma.SmartHub/obj/{configuration}/Luma.SmartHub.pdb"
+      }
+    }
+  }
+}
