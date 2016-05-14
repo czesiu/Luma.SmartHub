@@ -1,3 +1,5 @@
+$Location = Get-Location
+
 # log the runtimes
 dnvm list
 dnvm install 1.0.0-rc1-update2 -r coreclr -a x86
@@ -11,6 +13,16 @@ dnu restore
 
 # run the build
 & "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" src\Luma.SmartHub.sln
+
+$OutputDirectory="C:\Program Files (x86)\NuGet\Packages"
+$Configuration = "Release"
+
+Get-ChildItem -r *.nuspec | ForEach-Object {
+    Set-Location $_.Directory
+    NuGet Pack
+}
+
+Set-Location $Location
 
 # tests
 # dnvm use 1.0.0-rc1-update2 -a x64 -r clr
