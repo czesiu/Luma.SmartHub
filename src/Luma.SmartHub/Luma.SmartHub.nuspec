@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Luma.SmartHub</id>
-    <version>0.0.1</version>
+    <version>$version$</version>
     <title>Luma.SmartHub</title>
     <authors>czesiu</authors>
     <projectUrl>https://github.com/czesiu/Luma.SmartHub</projectUrl>
