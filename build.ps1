@@ -14,12 +14,9 @@ dnu restore
 # run the build
 & "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" src\Luma.SmartHub.sln
 
-$OutputDirectory="C:\Program Files (x86)\NuGet\Packages"
-$Configuration = "Release"
-
 Get-ChildItem -r *.nuspec | ForEach-Object {
-    Set-Location $_.Directory
-    NuGet Pack
+    Write-Host Packaging $_.FullName
+    NuGet Pack $_.FullName
 }
 
 Set-Location $Location
