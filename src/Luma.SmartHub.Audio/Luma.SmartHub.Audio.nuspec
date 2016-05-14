@@ -20,10 +20,10 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
+    <dependencies>
+      <dependency id="Luma.SmartHub" />
+    </dependencies>
   </metadata>
-  <dependencies>
-    <dependency id="Luma.SmartHub" />
-  </dependencies>
   <files>
     <file src="bin\Release\Luma.SmartHub.Audio.dll" target="lib\net45"/>
     <file src="bin\Release\Luma.SmartHub.Audio.xml" target="lib\net45"/>
