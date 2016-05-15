@@ -25,7 +25,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Luma.SmartHub.Audio.dll" target="lib\portable-net45+netcore45"/>
-    <file src="bin\Release\Luma.SmartHub.Audio.xml" target="lib\portable-net45+netcore45"/>
+    <file src="bin\Release\Luma.SmartHub.Audio.dll" target="lib\portable-net45+netcore45+wpa81+MonoAndroid+Xamarin.Mac+Xamarin.iOS+MonoTouch"/>
+    <file src="bin\Release\Luma.SmartHub.Audio.xml" target="lib\portable-net45+netcore45+wpa81+MonoAndroid+Xamarin.Mac+Xamarin.iOS+MonoTouch"/>
   </files>
 </package>
