@@ -1,16 +1,16 @@
 $Location = Get-Location
 $Configuration = "Release"
 
-# run the build
+# Run the build
 & "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" src\Luma.SmartHub.sln /property:Configuration=$Configuration
 
-// Search for all nuspec files
+# Search for all nuspec files
 Get-ChildItem -r *.nuspec | ForEach-Object {
 
-    // Finding csproj files in directory with nuspec file
+    # Finding csproj files in directory with nuspec file
     Get-ChildItem $_.Directory -r *.csproj| ForEach-Object {
 
-        // Packaging project to nupkg
+        # Packaging project to nupkg
         Write-Host Packaging $_.FullName
         NuGet Pack $_.FullName -Prop Configuration=$Configuration
     }
