@@ -22,7 +22,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="bin\Release\Luma.SmartHub.dll" target="lib\net45"/>
-    <file src="bin\Release\Luma.SmartHub.xml" target="lib\net45"/>
+    <file src="bin\Release\Luma.SmartHub.dll" target="lib\portable-net45+netcore45"/>
+    <file src="bin\Release\Luma.SmartHub.xml" target="lib\portable-net45+netcore45"/>
   </files>
 </package>

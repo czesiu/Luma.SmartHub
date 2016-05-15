@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Luma.SmartHub.Web", "Luma.SmartHub.Web\Luma.SmartHub.Web.xproj", "{967CA5E8-322C-4231-99BA-DDA82CED9B2C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luma.SmartHub", "Luma.SmartHub\Luma.SmartHub.csproj", "{D1499997-979B-4335-8306-DAB81CCC0CED}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luma.SmartHub.Audio", "Luma.SmartHub.Audio\Luma.SmartHub.Audio.csproj", "{D0574513-D81B-4D79-8EE4-6659106D37FB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{29D2DB99-63A5-4AE0-96D9-014B10281488}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
@@ -19,24 +13,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{790BA1
 		..\build.ps1 = ..\build.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luma.SmartHub", "Luma.SmartHub\Luma.SmartHub.csproj", "{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luma.SmartHub.Audio", "Luma.SmartHub.Audio\Luma.SmartHub.Audio.csproj", "{D2F04FF3-C9A5-45D5-9410-A02248736836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{967CA5E8-322C-4231-99BA-DDA82CED9B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{967CA5E8-322C-4231-99BA-DDA82CED9B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{967CA5E8-322C-4231-99BA-DDA82CED9B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{967CA5E8-322C-4231-99BA-DDA82CED9B2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1499997-979B-4335-8306-DAB81CCC0CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1499997-979B-4335-8306-DAB81CCC0CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1499997-979B-4335-8306-DAB81CCC0CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1499997-979B-4335-8306-DAB81CCC0CED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0574513-D81B-4D79-8EE4-6659106D37FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0574513-D81B-4D79-8EE4-6659106D37FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0574513-D81B-4D79-8EE4-6659106D37FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0574513-D81B-4D79-8EE4-6659106D37FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F04FF3-C9A5-45D5-9410-A02248736836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F04FF3-C9A5-45D5-9410-A02248736836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F04FF3-C9A5-45D5-9410-A02248736836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F04FF3-C9A5-45D5-9410-A02248736836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

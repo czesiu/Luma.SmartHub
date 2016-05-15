@@ -21,11 +21,11 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Luma.SmartHub" />
+      <dependency id="Luma.SmartHub" version="0.0.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Luma.SmartHub.Audio.dll" target="lib\net45"/>
-    <file src="bin\Release\Luma.SmartHub.Audio.xml" target="lib\net45"/>
+    <file src="bin\Release\Luma.SmartHub.Audio.dll" target="lib\portable-net45+netcore45"/>
+    <file src="bin\Release\Luma.SmartHub.Audio.xml" target="lib\portable-net45+netcore45"/>
   </files>
 </package>
