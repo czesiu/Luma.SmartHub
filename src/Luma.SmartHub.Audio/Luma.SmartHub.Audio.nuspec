@@ -21,7 +21,9 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Luma.SmartHub" version="0.0.1" />
+      <group>
+        <dependency id="Luma.SmartHub" version="0.0.22.0" />
+      </group>
     </dependencies>
   </metadata>
   <files>
