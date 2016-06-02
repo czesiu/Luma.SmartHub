@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Luma.SmartHub.Audio.Playback;
 
 namespace Luma.SmartHub.Audio
 {
     public interface IAudioHub
     {
+        double Volume { get; set; }
         IList<IAudioDevice> Devices { get; }
-
-        void Play(string url, IAudioDevice device = null);
+        IPlayback CreatePlayback(Uri uri);
     }
 }

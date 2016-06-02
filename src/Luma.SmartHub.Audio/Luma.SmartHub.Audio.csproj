@@ -43,6 +43,8 @@
     <Compile Include="AudioDevices.cs" />
     <Compile Include="IAudioDevice.cs" />
     <Compile Include="IAudioHub.cs" />
+    <Compile Include="Playback\IPlayback.cs" />
+    <Compile Include="Playback\IPlaylist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
