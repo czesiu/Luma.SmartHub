@@ -40,7 +40,10 @@
     <None Include="Luma.SmartHub.nuspec" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventConfigurationAttribute.cs" />
     <Compile Include="IDevice.cs" />
+    <Compile Include="IEvent.cs" />
+    <Compile Include="IEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
