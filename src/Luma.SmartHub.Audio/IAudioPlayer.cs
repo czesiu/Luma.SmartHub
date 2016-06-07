@@ -8,6 +8,9 @@ namespace Luma.SmartHub.Audio
     /// </summary>
     public interface IAudioPlayer
     {
+        IAudioHub AudioHub { get; }
         IEnumerable<IPlayback> Playbacks { get; }
+        void AddPlayback(IPlayback playback);
+        void RemovePlayback(IPlayback playback);
     }
 }

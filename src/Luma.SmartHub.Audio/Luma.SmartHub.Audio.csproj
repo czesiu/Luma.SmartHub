@@ -40,6 +40,8 @@
     <None Include="Luma.SmartHub.Audio.nuspec" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioHubDevicesExtensions.cs" />
+    <Compile Include="AudioPlayerPlayingExtensions.cs" />
     <Compile Include="Devices\AudioDevices.cs" />
     <Compile Include="AudioEvent.cs" />
     <Compile Include="AudioHubAsyncExtensions.cs" />
