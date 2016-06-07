@@ -7,7 +7,7 @@ namespace Luma.SmartHub.Audio.Playback
     {
         string Id { get; }
         double Volume { get; set; }
-        double Name { get; set; }
+        string Name { get; set; }
         bool IsPlaying { get; }
         IEnumerable<IOutputAudioDevice> OutgoingConnections { get; }
 
