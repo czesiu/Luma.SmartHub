@@ -16,7 +16,7 @@ namespace Luma.SmartHub.Audio.Playback
         void Stop();
 
         event EventHandler Ended;
-        void AddOutgoingConnection(IAudioDevice audioDevice);
-        void RemoveOutgoingConnection(IAudioDevice audioDevice);
+        void AddOutgoingConnection(IOutputAudioDevice audioDevice);
+        void RemoveOutgoingConnection(IOutputAudioDevice audioDevice);
     }
 }
