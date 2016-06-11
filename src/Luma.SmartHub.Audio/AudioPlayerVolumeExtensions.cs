@@ -17,19 +17,19 @@ namespace Luma.SmartHub.Audio
         /// <param name="volume">Percent mute value (from 0 to 1)</param>
         public static IDisposable Mute(this IAudioPlayer audioPlayer, double volume)
         {
-            var volumesForDevices = audioPlayer.Playbacks
+            var volumesForPlaybacks = audioPlayer.Playbacks
                 .Select(c => new PlaybackWithVolume
                 {
                     Playback = c,
                     Volume = c.Volume
                 });
 
-            foreach (var audioDevice in audioPlayer.Playbacks)
+            foreach (var playback in audioPlayer.Playbacks)
             {
-                audioDevice.Volume *= volume;
+                playback.Volume *= volume;
             }
 
-            return new MuteDisposable(volumesForDevices);
+            return new MuteDisposable(volumesForPlaybacks);
         }
 
         private class PlaybackWithVolume
@@ -40,21 +40,21 @@ namespace Luma.SmartHub.Audio
 
         private class MuteDisposable : IDisposable
         {
-            private readonly IEnumerable<PlaybackWithVolume> _volumesForDevices;
+            private readonly IEnumerable<PlaybackWithVolume> _volumesForPlaybacks;
 
-            public MuteDisposable(IEnumerable<PlaybackWithVolume> volumesForDevices)
+            public MuteDisposable(IEnumerable<PlaybackWithVolume> volumesForPlaybacks)
             {
-                if (volumesForDevices == null)
-                    throw new ArgumentNullException(nameof(volumesForDevices));
+                if (volumesForPlaybacks == null)
+                    throw new ArgumentNullException(nameof(volumesForPlaybacks));
 
-                _volumesForDevices = volumesForDevices;
+                _volumesForPlaybacks = volumesForPlaybacks;
             }
 
             public void Dispose()
             {
-                foreach (var volumesForDevice in _volumesForDevices)
+                foreach (var volumesForPlayback in _volumesForPlaybacks)
                 {
-                    volumesForDevice.Playback.Volume = volumesForDevice.Volume;
+                    volumesForPlayback.Playback.Volume = volumesForPlayback.Volume;
                 }
             }
         }

@@ -8,6 +8,6 @@ namespace Luma.SmartHub.Audio
     {
         double Volume { get; set; }
         IList<IAudioDevice> Devices { get; }
-        IPlayback CreatePlayback(Uri uri);
+        IUriPlayback CreatePlayback(Uri uri);
     }
 }
