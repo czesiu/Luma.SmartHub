@@ -4,7 +4,7 @@ namespace Luma.SmartHub.Audio.Playback
 {
     public class PlaybackInfo
     {
-        string Name { get; set; }
-        Uri Uri { get; set; }
+        public string Name { get; set; }
+        public Uri Uri { get; set; }
     }
 }
