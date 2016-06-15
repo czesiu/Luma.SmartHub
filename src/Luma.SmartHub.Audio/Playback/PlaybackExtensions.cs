@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Luma.SmartHub.Audio.Playback
@@ -19,6 +20,20 @@ namespace Luma.SmartHub.Audio.Playback
             {
                 playback.RemoveOutgoingConnection(audioDevice);
             }
+        }
+
+        public static void Dispose(this IPlayback playback)
+        {
+            var disposable = playback as IDisposable;
+
+            if (disposable != null)
+            {
+                disposable.Dispose();
+                return;
+            }
+
+            playback.Stop();
+            playback.ClearOutgoingConnections();
         }
     }
 }

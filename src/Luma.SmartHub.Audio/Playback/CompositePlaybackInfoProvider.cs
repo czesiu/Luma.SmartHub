@@ -2,16 +2,16 @@
 
 namespace Luma.SmartHub.Audio.Playback
 {
-    public class PlaybackManager : IPlaybackManager
+    public class CompositePlaybackInfoProvider : IPlaybackInfoProvider
     {
         private readonly IPlaybackInfoProvider[] _playbackInfoProviders;
 
-        public PlaybackManager(IPlaybackInfoProvider[] playbackInfoProviders)
+        public CompositePlaybackInfoProvider(IPlaybackInfoProvider[] playbackInfoProviders)
         {
             _playbackInfoProviders = playbackInfoProviders;
         }
 
-        public PlaybackInfo TryGetPlaybackInfo(Uri uri)
+        public PlaybackInfo Get(Uri uri)
         {
             foreach (var playbackInfoProvider in _playbackInfoProviders)
             {

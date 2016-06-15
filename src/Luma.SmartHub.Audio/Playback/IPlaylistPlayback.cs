@@ -2,10 +2,10 @@
 
 namespace Luma.SmartHub.Audio.Playback
 {
-    public interface IPlaylist : IPlayback
+    public interface IPlaylistPlayback : IPlayback
     {
-        IList<IPlayback> Tracks { get; }
-        IPlayback CurrentTrack { get; }
+        IList<ITrackInfo> Tracks { get; }
+        ITrackInfo CurrentTrack { get; }
         void Next();
         void Prev();
     }
