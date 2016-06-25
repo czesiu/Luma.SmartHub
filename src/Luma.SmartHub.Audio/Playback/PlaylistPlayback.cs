@@ -14,7 +14,7 @@ namespace Luma.SmartHub.Audio.Playback
         private ITrackInfo _currentTrack;
 
         private readonly object _lock = new object();
-        
+
         protected readonly ILogger Logger = Log.ForContext<PlaylistPlayback>();
 
         public string Id { get; }
@@ -97,11 +97,13 @@ namespace Luma.SmartHub.Audio.Playback
                 {
                     var playbackInfo = _playbackInfoProvider.Get(trackInfo.Uri);
 
-                    if (playbackInfo != null)
-                    {
-                        trackInfo.Name = playbackInfo.Name;
-                        trackInfo.Uri = playbackInfo.Uri;
-                    }
+                    if (playbackInfo == null)
+                        return;
+
+                    trackInfo.Name = playbackInfo.Name;
+                    trackInfo.Uri = playbackInfo.Uri;
+
+                    Logger.Debug("Playback info provider returned {playbackInfo}", playbackInfo);
                 }
                 catch (Exception e)
                 {
@@ -181,7 +183,7 @@ namespace Luma.SmartHub.Audio.Playback
         {
             Next();
         }
-        
+
         private void OnVolumeChanged()
         {
             if (_playback == null)
