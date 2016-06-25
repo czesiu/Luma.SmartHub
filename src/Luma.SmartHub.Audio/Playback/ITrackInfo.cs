@@ -4,9 +4,9 @@ namespace Luma.SmartHub.Audio.Playback
 {
     public interface ITrackInfo
     {
-        string Name { get; }
-        string Artist { get; }
-        Uri Uri { get; }
+        string Name { get; set; }
+        string Artist { get; set; }
+        Uri Uri { get; set; }
     }
 
     public class TrackInfo : ITrackInfo

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Luma.SmartHub.Audio.Playback
 {
     public class PlaylistPlayback : IPlaylistPlayback
     {
         private readonly IAudioHub _audioHub;
+        private readonly IPlaybackInfoProvider _playbackInfoProvider;
         private IPlayback _playback;
         private ITrackInfo _currentTrack;
+
+        private readonly object _lock = new object();
 
         public string Id { get; }
 
@@ -26,11 +30,16 @@ namespace Luma.SmartHub.Audio.Playback
             set { _playback.Name = value; }
         }
 
-        // TODO: Add valid implementation - this is temporary
+        private double _volume = 1;
         public double Volume
         {
-            get { return _playback?.Volume ?? 0; }
-            set { _playback.Volume = value; }
+            get { return _volume; }
+            set
+            {
+                _volume = Math.Max(0, value);
+
+                OnVolumeChanged();
+            }
         }
 
         public IList<ITrackInfo> Tracks { get; }
@@ -51,24 +60,46 @@ namespace Luma.SmartHub.Audio.Playback
                 if (_currentTrack == value)
                     return;
 
-                var oldTrack = _currentTrack;
+                lock (_lock)
+                {
+                    var oldTrack = _currentTrack;
 
-                _currentTrack = value;
+                    _currentTrack = value;
 
-                OnCurrentTrackChanged(oldTrack, _currentTrack);
+                    OnCurrentTrackChanged(oldTrack, _currentTrack);
+                }
             }
         }
 
-        public PlaylistPlayback(IAudioHub audioHub, IList<Uri> tracks)
-            : this(audioHub, tracks.ToTrackInfos()) { }
+        public PlaylistPlayback(IAudioHub audioHub, IPlaybackInfoProvider playbackInfoProvider, IList<Uri> tracks)
+            : this(audioHub, playbackInfoProvider, tracks.ToTrackInfos()) { }
 
-        public PlaylistPlayback(IAudioHub audioHub, IList<ITrackInfo> tracks = null)
+        public PlaylistPlayback(IAudioHub audioHub, IPlaybackInfoProvider playbackInfoProvider, IList<ITrackInfo> tracks = null)
         {
             _audioHub = audioHub;
+            _playbackInfoProvider = playbackInfoProvider;
 
             Id = Guid.NewGuid().ToString();
             Tracks = tracks ?? new List<ITrackInfo>();
             OutgoingConnections = new HashSet<IOutputAudioDevice>();
+
+            Task.Run(FillPlaybackInfos);
+        }
+
+        private Task FillPlaybackInfos()
+        {
+            var result = Parallel.ForEach(Tracks, trackInfo =>
+            {
+                var playbackInfo = _playbackInfoProvider.Get(trackInfo.Uri);
+
+                if (playbackInfo != null)
+                {
+                    trackInfo.Name = playbackInfo.Name;
+                    trackInfo.Uri = playbackInfo.Uri;
+                }
+            });
+
+            return Task.FromResult(result);
         }
 
         public void Pause()
@@ -128,13 +159,22 @@ namespace Luma.SmartHub.Audio.Playback
             }
 
             _playback = _audioHub.CreatePlayback(newTrack.Uri);
+            _playback.Volume = Volume;
             _playback.Ended += OnCurrentTrackEnded;
             _playback.AddOutgoingConnections(OutgoingConnections);
         }
 
-        private void OnCurrentTrackEnded(object sender, EventArgs eventArgs)
+        private void OnCurrentTrackEnded(object sender, EventArgs e)
         {
             Next();
+        }
+        
+        private void OnVolumeChanged()
+        {
+            if (_playback == null)
+                return;
+
+            _playback.Volume = Volume;
         }
 
         private void GoToIndex(int index)
