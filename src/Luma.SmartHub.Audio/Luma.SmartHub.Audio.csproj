@@ -38,6 +38,7 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="Luma.SmartHub.Audio.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioHubDevicesExtensions.cs" />
@@ -68,6 +69,12 @@
       <Project>{262DA204-7413-4EC9-82A7-F3ECE58DDEB5}</Project>
       <Name>Luma.SmartHub</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.1.5.14\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

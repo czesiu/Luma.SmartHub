@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Luma.SmartHub.Audio.Playback
 {
@@ -13,6 +14,8 @@ namespace Luma.SmartHub.Audio.Playback
         private ITrackInfo _currentTrack;
 
         private readonly object _lock = new object();
+        
+        protected readonly ILogger Logger = Log.ForContext<PlaylistPlayback>();
 
         public string Id { get; }
 
@@ -90,12 +93,21 @@ namespace Luma.SmartHub.Audio.Playback
         {
             var result = Parallel.ForEach(Tracks, trackInfo =>
             {
-                var playbackInfo = _playbackInfoProvider.Get(trackInfo.Uri);
-
-                if (playbackInfo != null)
+                try
                 {
-                    trackInfo.Name = playbackInfo.Name;
-                    trackInfo.Uri = playbackInfo.Uri;
+                    var playbackInfo = _playbackInfoProvider.Get(trackInfo.Uri);
+
+                    if (playbackInfo != null)
+                    {
+                        trackInfo.Name = playbackInfo.Name;
+                        trackInfo.Uri = playbackInfo.Uri;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e, "Error during getting playback info for {url}", trackInfo.Uri);
+
+                    throw;
                 }
             });
 
