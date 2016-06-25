@@ -97,13 +97,13 @@ namespace Luma.SmartHub.Audio.Playback
                 {
                     var playbackInfo = _playbackInfoProvider.Get(trackInfo.Uri);
 
+                    Logger.Debug("Playback info provider returned {@playbackInfo} for {@trackInfo}", playbackInfo, trackInfo);
+
                     if (playbackInfo == null)
                         return;
-
+                    
                     trackInfo.Name = playbackInfo.Name;
                     trackInfo.Uri = playbackInfo.Uri;
-
-                    Logger.Debug("Playback info provider returned {playbackInfo}", playbackInfo);
                 }
                 catch (Exception e)
                 {
@@ -173,7 +173,7 @@ namespace Luma.SmartHub.Audio.Playback
             }
 
             _playback = _audioHub.CreatePlayback(newTrack.Uri);
-            _playback.Name = newTrack.Name;
+            _playback.Name = _playback.Name ?? newTrack.Name;
             _playback.Volume = Volume;
             _playback.Ended += OnCurrentTrackEnded;
             _playback.AddOutgoingConnections(OutgoingConnections);
