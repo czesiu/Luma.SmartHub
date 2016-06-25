@@ -86,12 +86,12 @@ namespace Luma.SmartHub.Audio.Playback
             Tracks = tracks ?? new List<ITrackInfo>();
             OutgoingConnections = new HashSet<IOutputAudioDevice>();
 
-            Task.Run(FillPlaybackInfos);
+            Task.Factory.StartNew(FillPlaybackInfos, TaskCreationOptions.LongRunning);
         }
 
-        private Task FillPlaybackInfos()
+        private void FillPlaybackInfos()
         {
-            var result = Parallel.ForEach(Tracks, trackInfo =>
+            foreach (var trackInfo in Tracks)
             {
                 try
                 {
@@ -100,8 +100,8 @@ namespace Luma.SmartHub.Audio.Playback
                     Logger.Debug("Playback info provider returned {@playbackInfo} for {@trackInfo}", playbackInfo, trackInfo);
 
                     if (playbackInfo == null)
-                        return;
-                    
+                        continue;
+
                     trackInfo.Name = playbackInfo.Name;
                     trackInfo.Uri = playbackInfo.Uri;
                 }
@@ -109,11 +109,7 @@ namespace Luma.SmartHub.Audio.Playback
                 {
                     Logger.Error(e, "Error during getting playback info for {@trackInfo}", trackInfo);
                 }
-            });
-            
-            Logger.Debug("FillPlaybackInfos parallel result: {@result}", result);
-
-            return Task.FromResult(result);
+            }
         }
 
         public void Pause()
