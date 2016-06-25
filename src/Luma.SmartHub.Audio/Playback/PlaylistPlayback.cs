@@ -171,6 +171,7 @@ namespace Luma.SmartHub.Audio.Playback
             }
 
             _playback = _audioHub.CreatePlayback(newTrack.Uri);
+            _playback.Name = newTrack.Name;
             _playback.Volume = Volume;
             _playback.Ended += OnCurrentTrackEnded;
             _playback.AddOutgoingConnections(OutgoingConnections);
