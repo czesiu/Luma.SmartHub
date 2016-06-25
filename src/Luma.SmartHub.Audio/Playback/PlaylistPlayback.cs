@@ -107,11 +107,11 @@ namespace Luma.SmartHub.Audio.Playback
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e, "Error during getting playback info for {url}", trackInfo.Uri);
-
-                    throw;
+                    Logger.Error(e, "Error during getting playback info for {@trackInfo}", trackInfo);
                 }
             });
+            
+            Logger.Debug("FillPlaybackInfos parallel result: {@result}", result);
 
             return Task.FromResult(result);
         }
