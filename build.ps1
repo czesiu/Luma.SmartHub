@@ -6,6 +6,10 @@ $NugetSources = "https://www.nuget.org/api/v2;https://ci.appveyor.com/nuget/luma
 # Restore NuGet packages
 NuGet Restore $SolutionFile -Source $NugetSources
 
+# Calculate version
+gitversion /l console /output buildserver /updateAssemblyInfo
+Write-Host "Version: %GitVersion_NuGetVersion%"
+        
 # Run the build
 MSBuild $SolutionFile /property:Configuration=$Configuration
 
@@ -17,7 +21,7 @@ Get-ChildItem -r *.nuspec | ForEach-Object {
 
         # Packaging project to nupkg
         Write-Host Packaging $_.FullName
-        NuGet Pack $_.FullName -Prop Configuration=$Configuration
+        NuGet Pack $_.FullName -version "%GitVersion_NuGetVersion%" -Prop Configuration=$Configuration
     }
 }
 
