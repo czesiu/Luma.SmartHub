@@ -35,3 +35,6 @@ Audio features implementation. Currently using un4seen Bass library, but other i
 
 #### [Led strip](https://github.com/czesiu/Luma.SmartHub.LedStrip)
 Led strip drivers implementations. Currently only for WS2812B led strips.
+
+### [Controllino](https://github.com/czesiu/Luma.SmartHub.Controllino)
+Controllino firmware to control lights.
